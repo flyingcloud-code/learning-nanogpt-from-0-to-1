@@ -215,3 +215,13 @@ CPU 矩阵乘法: 0.012s | MPS: 0.007s | 加速比: 1.7x
 下一课开始进入数学地基：线性代数和微积分。但只讲直觉，不讲公式推导。比如矩阵乘法，会用"批量映射"的视角重新看一遍——那正是 GPT 内部每天都在做的事。
 
 *手搓大模型，第 2 课完成。环境已就绪，张量已上手。*
+
+---
+
+**本课完整代码与全文已开源到 GitHub（public）：**
+
+https://github.com/flyingcloud-code/learning-nanogpt-from-0-to-1/tree/main/02-environment
+
+**系列仓库（30 课陆续更新中）：**
+
+https://github.com/flyingcloud-code/learning-nanogpt-from-0-to-1
