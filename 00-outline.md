@@ -113,7 +113,9 @@
 - [ ] 面向小白：无未解释术语、数学只讲直觉
 - [ ] 长文无 AI 味：无 emoji 滥用、无"深入剖析/核心洞察/这意味着/本质上"
 - [ ] 不用"你"通指读者
+- [ ] 文末必须有 GitHub 公开路径段落：本课 `https://github.com/flyingcloud-code/learning-nanogpt-from-0-to-1/tree/main/NN-slug` + 系列仓库 `https://github.com/flyingcloud-code/learning-nanogpt-from-0-to-1`（md/html/飞书/微信四处一致，NN-slug 与 repo 实际目录一致）
 - [ ] 已转 HTML（baoyu-markdown-to-html --theme modern --color blue），走 wechat-publish.sh 发布
+- [ ] 微信 draft/add 后必须 draft/get 回读验证（40007 即重推；验证通过才算发布成功，并记录 media_id 到 drafts-state.json）
 - [ ] 文件写 /Volumes/External-HD-data/leo-universe/learning/series/hand-made-gpt/，编号 01-30
 
 ## 每日 cron 设计（待创建）
