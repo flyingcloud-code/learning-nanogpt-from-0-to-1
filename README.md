@@ -35,7 +35,7 @@ NN-slug/
 | 02 | [环境搭建 + 第一个张量程序](02-environment/README.md) | C | ✅ 已发布 |
 | 03 | [数学地基上：线代+微积分直觉](03-math-foundations/README.md) | C | ✅ 已发布 |
 | 04 | [数学地基下：概率+信息论](04-probability-information/README.md) | C | ✅ 已发布 |
-| 05 | NumPy 手写线性回归+梯度下降 | A | 📝 计划中 |
+| 05 | [NumPy 手写线性回归+梯度下降](05-linear-regression/README.md) | A | ✅ 已发布 |
 | 06 | 感知机→MLP：前向传播 | A | 📝 计划中 |
 | 07 | 反向传播：从错误反推梯度 | S | 📝 计划中 |
 | 08 | Loss 与收敛 | S | 📝 计划中 |
