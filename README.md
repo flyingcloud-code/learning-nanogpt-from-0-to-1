@@ -38,7 +38,7 @@ NN-slug/
 | 05 | [NumPy 手写线性回归+梯度下降](05-linear-regression/README.md) | A | ✅ 已发布 |
 | 06 | [感知机→MLP：前向传播](06-mlp-forward/README.md) | A | ✅ 已发布 |
 | 07 | [反向传播：从错误反推梯度](07-backpropagation/README.md) | S | ✅ 已发布 |
-| 08 | Loss 与收敛 | S | 📝 计划中 |
+| 08 | [Loss 与收敛](08-loss-convergence/README.md) | S | ✅ 已发布 |
 | 09 | 优化器：SGD/Adam/学习率 | A | 📝 计划中 |
 | 10 | 泛化：过拟合与正则化 | S | 📝 计划中 |
 | 11 | Embedding：让计算机理解"词" | S | 📝 计划中 |
