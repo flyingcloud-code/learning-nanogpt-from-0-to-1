@@ -40,7 +40,7 @@ NN-slug/
 | 07 | [反向传播：从错误反推梯度](07-backpropagation/README.md) | S | ✅ 已发布 |
 | 08 | [Loss 与收敛](08-loss-convergence/README.md) | S | ✅ 已发布 |
 | 09 | [优化器：SGD/Adam/学习率](09-optimizers/README.md) | A | ✅ 已发布 |
-| 10 | 泛化：过拟合与正则化 | S | 📝 计划中 |
+| 10 | [泛化：过拟合与正则化](10-generalization/README.md) | S | ✅ 已发布 |
 | 11 | Embedding：让计算机理解"词" | S | 📝 计划中 |
 | 12 | 语言模型：next token prediction | A | 📝 计划中 |
 | 13 | Tokenizer：BPE 原理 | C | 📝 计划中 |
