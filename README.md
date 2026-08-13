@@ -42,7 +42,7 @@ NN-slug/
 | 09 | [优化器：SGD/Adam/学习率](09-optimizers/README.md) | A | ✅ 已发布 |
 | 10 | [泛化：过拟合与正则化](10-generalization/README.md) | S | ✅ 已发布 |
 | 11 | [Embedding：让计算机理解"词"](11-embedding/README.md) | S | ✅ 已发布 |
-| 12 | 语言模型：next token prediction | A | 📝 计划中 |
+| 12 | [语言模型：next token prediction](12-next-token/README.md) | A | ✅ 已发布 |
 | 13 | Tokenizer：BPE 原理 | C | 📝 计划中 |
 | 14 | Attention 直觉 | S | 📝 计划中 |
 | 15 | QKV 详解 | S | 📝 计划中 |
