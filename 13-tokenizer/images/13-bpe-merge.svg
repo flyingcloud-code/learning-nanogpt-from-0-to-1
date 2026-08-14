@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 880">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', 'SF Mono', monospace; }
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- 标题 -->
+  <text x="40" y="48" fill="#ffffff" font-size="20" font-weight="700">BPE 合并演示：low low low low low lower lowest newest</text>
+  <text x="40" y="74" fill="#94a3b8" font-size="12">每一轮只合并「出现次数最多」的相邻字符对；合并后的新符号进入词表，继续参与下一轮。</text>
+
+  <!-- 步骤 0 -->
+  <text x="40" y="122" fill="#fbbf24" font-size="13" font-weight="600">第 0 步 · 初始：44 个字符，一个字符一个 token</text>
+  <g font-size="16" font-weight="600">
+    <text x="52"  y="158" fill="#e2e8f0" text-anchor="middle">l</text>
+    <text x="82"  y="158" fill="#e2e8f0" text-anchor="middle">o</text>
+    <text x="112" y="158" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="142" y="158" fill="#64748b" text-anchor="middle">_</text>
+    <text x="172" y="158" fill="#e2e8f0" text-anchor="middle">l</text>
+    <text x="202" y="158" fill="#e2e8f0" text-anchor="middle">o</text>
+    <text x="232" y="158" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="262" y="158" fill="#64748b" text-anchor="middle">_</text>
+    <text x="292" y="158" fill="#e2e8f0" text-anchor="middle">l</text>
+    <text x="322" y="158" fill="#e2e8f0" text-anchor="middle">o</text>
+    <text x="352" y="158" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="382" y="158" fill="#64748b" text-anchor="middle">_</text>
+    <text x="412" y="158" fill="#e2e8f0" text-anchor="middle">l</text>
+    <text x="442" y="158" fill="#e2e8f0" text-anchor="middle">o</text>
+    <text x="472" y="158" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="502" y="158" fill="#64748b" text-anchor="middle">_</text>
+    <text x="532" y="158" fill="#e2e8f0" text-anchor="middle">l</text>
+    <text x="562" y="158" fill="#e2e8f0" text-anchor="middle">o</text>
+    <text x="592" y="158" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="622" y="158" fill="#64748b" text-anchor="middle">_</text>
+    <text x="652" y="158" fill="#e2e8f0" text-anchor="middle">l</text>
+    <text x="682" y="158" fill="#e2e8f0" text-anchor="middle">o</text>
+    <text x="712" y="158" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="742" y="158" fill="#64748b" text-anchor="middle">_</text>
+    <text x="772" y="158" fill="#e2e8f0" text-anchor="middle">l</text>
+    <text x="802" y="158" fill="#e2e8f0" text-anchor="middle">o</text>
+    <text x="832" y="158" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="862" y="158" fill="#64748b" text-anchor="middle">_</text>
+    <text x="892" y="158" fill="#e2e8f0" text-anchor="middle">l</text>
+    <text x="922" y="158" fill="#e2e8f0" text-anchor="middle">o</text>
+    <text x="952" y="158" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="982" y="158" fill="#64748b" text-anchor="middle">_</text>
+    <text x="1012" y="158" fill="#e2e8f0" text-anchor="middle">l</text>
+    <text x="1042" y="158" fill="#e2e8f0" text-anchor="middle">o</text>
+    <text x="1072" y="158" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="1102" y="158" fill="#64748b" text-anchor="middle">_</text>
+    <text x="1132" y="158" fill="#e2e8f0" text-anchor="middle">l</text>
+    <text x="1162" y="158" fill="#e2e8f0" text-anchor="middle">o</text>
+    <text x="1192" y="158" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="1222" y="158" fill="#64748b" text-anchor="middle">_</text>
+    <text x="1252" y="158" fill="#e2e8f0" text-anchor="middle">…</text>
+  </g>
+
+  <line x1="40" y1="190" x2="1240" y2="190" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- 步骤 1 -->
+  <text x="40" y="224" fill="#fbbf24" font-size="13" font-weight="600">第 1 步 · 「l」+「o」出现 7 次 → 合并成 lo（进入词表）</text>
+  <g font-size="16" font-weight="600">
+    <text x="52"  y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="94"  y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="124" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="154" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="196" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="226" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="256" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="298" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="328" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="358" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="400" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="430" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="460" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="502" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="532" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="562" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="604" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="634" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="664" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="706" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="736" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="766" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="808" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="838" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="868" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="910" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="940" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="970" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="1012" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="1042" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="1072" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="1114" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="1144" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="1174" y="260" fill="#22d3ee" text-anchor="middle">lo</text>
+    <text x="1216" y="260" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="1246" y="260" fill="#64748b" text-anchor="middle">_</text>
+    <text x="1276" y="260" fill="#e2e8f0" text-anchor="middle">…</text>
+  </g>
+
+  <line x1="40" y1="292" x2="1240" y2="292" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- 步骤 2 -->
+  <text x="40" y="326" fill="#fbbf24" font-size="13" font-weight="600">第 2 步 · 「lo」+「w」出现 7 次 → 合并成 low（常用词变成一个词块）</text>
+  <g font-size="16" font-weight="600">
+    <text x="52"  y="362" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="106" y="362" fill="#64748b" text-anchor="middle">_</text>
+    <text x="136" y="362" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="190" y="362" fill="#64748b" text-anchor="middle">_</text>
+    <text x="220" y="362" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="274" y="362" fill="#64748b" text-anchor="middle">_</text>
+    <text x="304" y="362" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="358" y="362" fill="#64748b" text-anchor="middle">_</text>
+    <text x="388" y="362" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="442" y="362" fill="#64748b" text-anchor="middle">_</text>
+    <text x="472" y="362" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="526" y="362" fill="#e2e8f0" text-anchor="middle">e</text>
+    <text x="556" y="362" fill="#e2e8f0" text-anchor="middle">r</text>
+    <text x="586" y="362" fill="#64748b" text-anchor="middle">_</text>
+    <text x="616" y="362" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="670" y="362" fill="#e2e8f0" text-anchor="middle">e</text>
+    <text x="700" y="362" fill="#e2e8f0" text-anchor="middle">s</text>
+    <text x="730" y="362" fill="#e2e8f0" text-anchor="middle">t</text>
+    <text x="760" y="362" fill="#64748b" text-anchor="middle">_</text>
+    <text x="790" y="362" fill="#e2e8f0" text-anchor="middle">n</text>
+    <text x="820" y="362" fill="#e2e8f0" text-anchor="middle">e</text>
+    <text x="850" y="362" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="880" y="362" fill="#e2e8f0" text-anchor="middle">e</text>
+    <text x="910" y="362" fill="#e2e8f0" text-anchor="middle">s</text>
+    <text x="940" y="362" fill="#e2e8f0" text-anchor="middle">t</text>
+  </g>
+
+  <line x1="40" y1="394" x2="1240" y2="394" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- 步骤 3-5 摘要 -->
+  <text x="40" y="428" fill="#fbbf24" font-size="13" font-weight="600">第 3~5 步 · 继续合并：' '+'low' → ' low'（6 次）→ ' low'+' low' → ' low low'（4 次）→ ' low'+'e' → ' lowe'（2 次）</text>
+
+  <line x1="40" y1="460" x2="1240" y2="460" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- 结果 -->
+  <text x="40" y="498" fill="#ffffff" font-size="17" font-weight="700">5 轮合并后：44 个字符 → 15 个词块（low 被识别为常用词块）</text>
+  <g font-size="17" font-weight="600">
+    <text x="52"  y="542" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="118" y="542" fill="#64748b" text-anchor="middle">_</text>
+    <text x="172" y="542" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="238" y="542" fill="#64748b" text-anchor="middle">_</text>
+    <text x="292" y="542" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="358" y="542" fill="#64748b" text-anchor="middle">_</text>
+    <text x="412" y="542" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="478" y="542" fill="#64748b" text-anchor="middle">_</text>
+    <text x="532" y="542" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="598" y="542" fill="#64748b" text-anchor="middle">_</text>
+    <text x="652" y="542" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="718" y="542" fill="#e2e8f0" text-anchor="middle">e</text>
+    <text x="772" y="542" fill="#e2e8f0" text-anchor="middle">r</text>
+    <text x="826" y="542" fill="#64748b" text-anchor="middle">_</text>
+    <text x="880" y="542" fill="#22d3ee" text-anchor="middle">low</text>
+    <text x="946" y="542" fill="#e2e8f0" text-anchor="middle">e</text>
+    <text x="1000" y="542" fill="#e2e8f0" text-anchor="middle">s</text>
+    <text x="1054" y="542" fill="#e2e8f0" text-anchor="middle">t</text>
+    <text x="1108" y="542" fill="#64748b" text-anchor="middle">_</text>
+    <text x="1162" y="542" fill="#e2e8f0" text-anchor="middle">n</text>
+    <text x="1216" y="542" fill="#e2e8f0" text-anchor="middle">e</text>
+  </g>
+  <g font-size="17" font-weight="600">
+    <text x="52"  y="578" fill="#e2e8f0" text-anchor="middle">w</text>
+    <text x="106" y="578" fill="#e2e8f0" text-anchor="middle">e</text>
+    <text x="160" y="578" fill="#e2e8f0" text-anchor="middle">s</text>
+    <text x="214" y="578" fill="#e2e8f0" text-anchor="middle">t</text>
+  </g>
+
+  <line x1="40" y1="614" x2="1240" y2="614" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- 真实合并记录 -->
+  <text x="40" y="652" fill="#ffffff" font-size="16" font-weight="700">真实合并记录（code/13-bpe-demo.py 实际输出）</text>
+  <g font-size="13">
+    <text x="60"  y="684" fill="#94a3b8">合并 1: 'l'+'o' → 'lo'       出现 7 次</text>
+    <text x="60"  y="710" fill="#94a3b8">合并 2: 'lo'+'w' → 'low'     出现 7 次</text>
+    <text x="60"  y="736" fill="#94a3b8">合并 3: ' '+'low' → ' low'   出现 6 次</text>
+    <text x="700" y="684" fill="#94a3b8">合并 4: ' low'+' low' → ' low low'  出现 4 次</text>
+    <text x="700" y="710" fill="#94a3b8">合并 5: ' low'+'e' → ' lowe'    出现 2 次</text>
+  </g>
+
+  <!-- 结论 -->
+  <rect x="40" y="770" width="1200" height="90" rx="10" fill="rgba(8,51,68,0.35)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="60" y="800" fill="#22d3ee" font-size="14" font-weight="700">这就是 BPE 的全部：</text>
+  <text x="60" y="826" fill="#e2e8f0" font-size="13">① 数相邻字符对的次数 → ② 把最高频的那对合并成一个新词块 → ③ 新词块进词表 → ④ 重复，直到词表达到目标大小。</text>
+  <text x="60" y="850" fill="#e2e8f0" font-size="13">常用词（low、the、love）很快就变成一个词块；生僻词拆成小块兜底——两者都认识。</text>
+</svg>

@@ -43,7 +43,7 @@ NN-slug/
 | 10 | [泛化：过拟合与正则化](10-generalization/README.md) | S | ✅ 已发布 |
 | 11 | [Embedding：让计算机理解"词"](11-embedding/README.md) | S | ✅ 已发布 |
 | 12 | [语言模型：next token prediction](12-next-token/README.md) | A | ✅ 已发布 |
-| 13 | Tokenizer：BPE 原理 | C | 📝 计划中 |
+| 13 | [Tokenizer：BPE 原理](13-tokenizer/README.md) | C | ✅ 已发布 |
 | 14 | Attention 直觉 | S | 📝 计划中 |
 | 15 | QKV 详解 | S | 📝 计划中 |
 | 16 | 因果掩码 + 多头 | S | 📝 计划中 |
