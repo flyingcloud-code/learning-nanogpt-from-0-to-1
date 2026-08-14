@@ -2,14 +2,19 @@
 """13-make-charts.py — 第 13 课图表（真实数据）
 运行: ~/projects/main-agent/nanoGPT/.venv/bin/python 13-make-charts.py
 """
+import os
 import json
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
+# 脚本所在目录：从任何 cwd 运行都能找到数据/输出
+BASE = os.path.dirname(os.path.abspath(__file__))
+IMG_DIR = os.path.join(BASE, "images")
+os.makedirs(IMG_DIR, exist_ok=True)
+
 # 中文字体
-import os
 cand = [
     "/System/Library/Fonts/PingFang.ttc",
     "/System/Library/Fonts/STHeiti Medium.ttc",
@@ -26,7 +31,7 @@ if chosen:
     plt.rcParams["font.family"] = name
 plt.rcParams["axes.unicode_minus"] = False
 
-with open("chart-data.json") as f:
+with open(os.path.join(BASE, "chart-data.json")) as f:
     d = json.load(f)
 
 # ── 图 1：字符 vs BPE token 数对比（压缩比） ──
@@ -54,7 +59,7 @@ ax1.spines["top"].set_visible(False)
 ax1.spines["right"].set_visible(False)
 ax1.set_facecolor("#f8fafc")
 fig.tight_layout()
-fig.savefig("images/13-token-compare.png", facecolor="white")
+fig.savefig(os.path.join(IMG_DIR, "13-token-compare.png"), facecolor="white")
 plt.close(fig)
 print("saved images/13-token-compare.png")
 
@@ -79,6 +84,6 @@ ax.spines["top"].set_visible(False)
 ax.spines["right"].set_visible(False)
 ax.set_facecolor("#f8fafc")
 fig.tight_layout()
-fig.savefig("images/13-merge-freq.png", facecolor="white")
+fig.savefig(os.path.join(IMG_DIR, "13-merge-freq.png"), facecolor="white")
 plt.close(fig)
 print("saved images/13-merge-freq.png")

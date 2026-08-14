@@ -9,6 +9,9 @@ import re
 import json
 from collections import Counter, defaultdict
 
+# 脚本所在目录：保证从任何 cwd 运行都能找到输入/输出
+BASE = os.path.dirname(os.path.abspath(__file__))
+
 # ─────────────────────────────────────────────
 # 0. 数据
 # ─────────────────────────────────────────────
@@ -117,7 +120,7 @@ for n in lens:
     char_counts.append(len(seg))
     bpe_counts.append(len(enc.encode(seg)))
     print(f"    {n:>6,} 字符 -> BPE {len(enc.encode(seg)):>6,} 词块  ({n/len(enc.encode(seg)):.2f}x)")
-with open("chart-data.json", "w") as f:
+with open(os.path.join(BASE, "chart-data.json"), "w") as f:
     json.dump({"lens": lens, "char": char_counts, "bpe": bpe_counts}, f)
 
 print("\n完成 ✅")
