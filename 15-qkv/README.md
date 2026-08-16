@@ -246,7 +246,7 @@ scores_scaled = scores_raw / math.sqrt(head_dim)     # 缩放后：Q·Kᵀ/√64
 
 **彩蛋 1：nanoGPT 的 Wq/Wk/Wv 其实是一个大矩阵。** `self.c_attn = nn.Linear(n_embd, 3*n_embd)`，前向时 `q, k, v = self.c_attn(x).split(n_embd, dim=2)` 一行切开。**代码把三个矩阵拼在一起，是为了让 GPU 一次算完三次投影**——工程细节，不影响概念。
 
-**彩蛋 2：为什么叫 Query / Key / Value？** 这套命名借了数据库和缓存系统的词：查缓存时拿 Query 去匹配 Key，命中了取 Value。**Attention 本质上就是一次"软查找"**——拿查询去匹配所有键，按匹配度取值的加权平均。
+**彩蛋 2：为什么叫 Query / Key / Value？** 这套命名借了数据库和缓存系统的词：查缓存时拿 Query 去匹配 Key，命中了取 Value。**Attention 干的事就是一次"软查找"**——拿查询去匹配所有键，按匹配度取值的加权平均。
 
 **彩蛋 3：softmax 前先减每行最大值不是"额外技巧"，是防溢出。** `exp(144)` 在 float32 里直接爆掉（inf），减去最大值后最大指数变成 exp(0)=1，安全。**手写 softmax 的人都会加这一行，因为它真的会崩**。
 
