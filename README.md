@@ -45,7 +45,7 @@ NN-slug/
 | 12 | [语言模型：next token prediction](12-next-token/README.md) | A | ✅ 已发布 |
 | 13 | [Tokenizer：BPE 原理](13-tokenizer/README.md) | C | ✅ 已发布 |
 | 14 | [Attention 直觉](14-attention/README.md) | S | ✅ 已发布 |
-| 15 | QKV 详解 | S | 📝 计划中 |
+| 15 | [QKV 详解](15-qkv/README.md) | S | ✅ 已发布 |
 | 16 | 因果掩码 + 多头 | S | 📝 计划中 |
 | 17 | Transformer 块 | S | 📝 计划中 |
 | 18 | GPT 全景：读 model.py | A | 📝 计划中 |
