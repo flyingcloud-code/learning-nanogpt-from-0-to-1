@@ -47,7 +47,7 @@ NN-slug/
 | 14 | [Attention 直觉](14-attention/README.md) | S | ✅ 已发布 |
 | 15 | [QKV 详解](15-qkv/README.md) | S | ✅ 已发布 |
 | 16 | [因果掩码 + 多头](16-causal-multihead/README.md) | S | ✅ 已发布 |
-| 17 | Transformer 块 | S | 📝 计划中 |
+| 17 | [Transformer 块](17-transformer-block/README.md) | S | ✅ 已发布 |
 | 18 | GPT 全景：读 model.py | A | 📝 计划中 |
 | 19 | 项目骨架：配置/数据/训练循环 | B | 📝 计划中 |
 | 20 | 手搓 BPE Tokenizer | A | 📝 计划中 |
