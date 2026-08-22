@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; }
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 + 网格 -->
+  <rect width="1400" height="800" fill="#0f172a"/>
+  <rect width="1400" height="800" fill="url(#grid)"/>
+
+  <!-- 标题 -->
+  <text x="40" y="40" fill="white" font-size="18" font-weight="600">第 21 课：手搓 Self-Attention（QKV 落地）—— 从张量形状看全部 7 步</text>
+  <text x="40" y="64" fill="#94a3b8" font-size="11">每步旁边标注代码里张量的形状变化：x (B,T,C) → q/k/v (B,H,T,hd) → scores (B,H,T,T) → 输出 (B,T,C)</text>
+
+  <!-- ══════════ 连线（先画，保证在盒子下层） ══════════ -->
+  <!-- 输入 → 投影 -->
+  <path d="M 175 300 L 260 300" fill="none" stroke="#22d3ee" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+  <text x="196" y="288" fill="#67e8f9" font-size="9">x</text>
+
+  <!-- c_attn → 三份 -->
+  <path d="M 400 300 L 430 170" fill="none" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#arrow-cyan)"/>
+  <text x="408" y="222" fill="#67e8f9" font-size="9">q 部分</text>
+  <path d="M 400 300 L 430 300" fill="none" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#arrow-violet)"/>
+  <text x="408" y="292" fill="#c4b5fd" font-size="9">k 部分</text>
+  <path d="M 400 300 L 430 430" fill="none" stroke="#34d399" stroke-width="1.8" marker-end="url(#arrow-emerald)"/>
+  <text x="408" y="372" fill="#6ee7b7" font-size="9">v 部分</text>
+
+  <!-- Q/K → 打分（Q 绕行右侧，K 直进） -->
+  <path d="M 570 170 L 830 170 L 830 300 L 845 300" fill="none" stroke="#fbbf24" stroke-width="1.8" marker-end="url(#arrow-amber)"/>
+  <text x="700" y="160" fill="#fde68a" font-size="9">Q (B,H,T,hd)</text>
+  <path d="M 570 300 L 845 300" fill="none" stroke="#fbbf24" stroke-width="1.8" marker-end="url(#arrow-amber)"/>
+  <text x="680" y="292" fill="#fde68a" font-size="9">Kᵀ (B,H,hd,T)</text>
+
+  <!-- 打分 → 掩码 -->
+  <path d="M 960 300 L 960 390" fill="none" stroke="#fb7185" stroke-width="1.8" marker-end="url(#arrow-rose)"/>
+  <text x="970" y="352" fill="#fda4af" font-size="9">分数 (B,H,T,T)</text>
+  <!-- 掩码 → softmax -->
+  <path d="M 960 480 L 960 570" fill="none" stroke="#fb7185" stroke-width="1.8" marker-end="url(#arrow-rose)"/>
+  <text x="970" y="532" fill="#fda4af" font-size="9">−inf 填右上角</text>
+  <!-- softmax → 混合 -->
+  <path d="M 960 660 L 1085 660" fill="none" stroke="#fb7185" stroke-width="1.8" marker-end="url(#arrow-rose)"/>
+  <text x="1000" y="650" fill="#fda4af" font-size="9">权重 att</text>
+  <!-- V → 混合（绕行：先下到 y=520 空隙，再横穿，最后下到混合盒子高度） -->
+  <path d="M 570 430 L 570 520 L 1083 520 L 1083 660 L 1085 660" fill="none" stroke="#34d399" stroke-width="1.8" marker-end="url(#arrow-emerald)"/>
+  <text x="985" y="512" fill="#6ee7b7" font-size="9">V (B,H,T,hd)</text>
+
+  <!-- 混合 → 拼回 -->
+  <path d="M 1200 660 L 1200 730 L 1235 730" fill="none" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#arrow-violet)"/>
+  <text x="1205" y="706" fill="#c4b5fd" font-size="9">拼多头</text>
+
+  <!-- ══════════ 组件盒子（opaque mask + 视觉层） ══════════ -->
+  <!-- 输入 x -->
+  <rect x="60" y="255" width="115" height="90" rx="8" fill="#0f172a"/>
+  <rect x="60" y="255" width="115" height="90" rx="8" fill="rgba(8,51,68,0.45)" stroke="#22d3ee" stroke-width="1.6"/>
+  <text x="117" y="292" fill="white" font-size="13" font-weight="600" text-anchor="middle">输入 x</text>
+  <text x="117" y="312" fill="#94a3b8" font-size="10" text-anchor="middle">(B, T, C)</text>
+  <text x="117" y="328" fill="#64748b" font-size="9" text-anchor="middle">token + 位置</text>
+
+  <!-- c_attn 投影 -->
+  <rect x="260" y="250" width="140" height="100" rx="8" fill="#0f172a"/>
+  <rect x="260" y="250" width="140" height="100" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="330" y="288" fill="white" font-size="13" font-weight="600" text-anchor="middle">① 投影 c_attn</text>
+  <text x="330" y="308" fill="#94a3b8" font-size="10" text-anchor="middle">x @ Wqkv</text>
+  <text x="330" y="326" fill="#94a3b8" font-size="10" text-anchor="middle">输出 (B,T,3C)</text>
+
+  <!-- Q -->
+  <rect x="430" y="130" width="140" height="80" rx="8" fill="#0f172a"/>
+  <rect x="430" y="130" width="140" height="80" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.4"/>
+  <text x="500" y="164" fill="white" font-size="13" font-weight="600" text-anchor="middle">Q 查询</text>
+  <text x="500" y="184" fill="#94a3b8" font-size="10" text-anchor="middle">(B,T,C) →</text>
+  <text x="500" y="198" fill="#94a3b8" font-size="10" text-anchor="middle">(B,H,T,hd)</text>
+
+  <!-- K -->
+  <rect x="430" y="260" width="140" height="80" rx="8" fill="#0f172a"/>
+  <rect x="430" y="260" width="140" height="80" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.4"/>
+  <text x="500" y="294" fill="white" font-size="13" font-weight="600" text-anchor="middle">K 键</text>
+  <text x="500" y="314" fill="#94a3b8" font-size="10" text-anchor="middle">(B,T,C) →</text>
+  <text x="500" y="328" fill="#94a3b8" font-size="10" text-anchor="middle">(B,H,T,hd)</text>
+
+  <!-- V -->
+  <rect x="430" y="390" width="140" height="80" rx="8" fill="#0f172a"/>
+  <rect x="430" y="390" width="140" height="80" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.4"/>
+  <text x="500" y="424" fill="white" font-size="13" font-weight="600" text-anchor="middle">V 值</text>
+  <text x="500" y="444" fill="#94a3b8" font-size="10" text-anchor="middle">(B,T,C) →</text>
+  <text x="500" y="458" fill="#94a3b8" font-size="10" text-anchor="middle">(B,H,T,hd)</text>
+
+  <!-- 打分 -->
+  <rect x="845" y="255" width="115" height="90" rx="8" fill="#0f172a"/>
+  <rect x="845" y="255" width="115" height="90" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="902" y="292" fill="white" font-size="13" font-weight="600" text-anchor="middle">② 打分</text>
+  <text x="902" y="312" fill="#94a3b8" font-size="10" text-anchor="middle">Q·Kᵀ/√hd</text>
+  <text x="902" y="328" fill="#94a3b8" font-size="10" text-anchor="middle">(B,H,T,T)</text>
+
+  <!-- 掩码 -->
+  <rect x="900" y="390" width="120" height="90" rx="8" fill="#0f172a"/>
+  <rect x="900" y="390" width="120" height="90" rx="8" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="960" y="427" fill="white" font-size="13" font-weight="600" text-anchor="middle">③ 因果掩码</text>
+  <text x="960" y="447" fill="#94a3b8" font-size="10" text-anchor="middle">右上角 −inf</text>
+  <text x="960" y="463" fill="#94a3b8" font-size="10" text-anchor="middle">(B,H,T,T)</text>
+
+  <!-- softmax -->
+  <rect x="900" y="570" width="120" height="90" rx="8" fill="#0f172a"/>
+  <rect x="900" y="570" width="120" height="90" rx="8" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="960" y="607" fill="white" font-size="13" font-weight="600" text-anchor="middle">④ softmax</text>
+  <text x="960" y="627" fill="#94a3b8" font-size="10" text-anchor="middle">每行和 = 1</text>
+  <text x="960" y="643" fill="#94a3b8" font-size="10" text-anchor="middle">(B,H,T,T)</text>
+
+  <!-- 混合 -->
+  <rect x="1085" y="615" width="115" height="90" rx="8" fill="#0f172a"/>
+  <rect x="1085" y="615" width="115" height="90" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="1142" y="652" fill="white" font-size="13" font-weight="600" text-anchor="middle">⑤ 混合</text>
+  <text x="1142" y="672" fill="#94a3b8" font-size="10" text-anchor="middle">att @ V</text>
+  <text x="1142" y="688" fill="#94a3b8" font-size="10" text-anchor="middle">(B,H,T,hd)</text>
+
+  <!-- 拼回 + 输出投影 -->
+  <rect x="1235" y="680" width="140" height="100" rx="8" fill="#0f172a"/>
+  <rect x="1235" y="680" width="140" height="100" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="1305" y="718" fill="white" font-size="13" font-weight="600" text-anchor="middle">⑥⑦ 拼回+投影</text>
+  <text x="1305" y="738" fill="#94a3b8" font-size="10" text-anchor="middle">cat 多头 → (B,T,C)</text>
+  <text x="1305" y="754" fill="#94a3b8" font-size="10" text-anchor="middle">→ c_proj 输出</text>
+
+  <!-- 图例 -->
+  <rect x="40" y="740" width="560" height="42" rx="8" fill="rgba(30,41,59,0.5)" stroke="#334155" stroke-width="1"/>
+  <text x="56" y="766" fill="#94a3b8" font-size="10">图例：</text>
+  <rect x="110" y="753" width="14" height="14" rx="3" fill="rgba(8,51,68,0.6)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="130" y="764" fill="#94a3b8" font-size="10">输入/投影</text>
+  <rect x="222" y="753" width="14" height="14" rx="3" fill="rgba(76,29,149,0.6)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="242" y="764" fill="#94a3b8" font-size="10">K/拼回</text>
+  <rect x="318" y="753" width="14" height="14" rx="3" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="338" y="764" fill="#94a3b8" font-size="10">V/混合</text>
+  <rect x="424" y="753" width="14" height="14" rx="3" fill="rgba(120,53,15,0.6)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="444" y="764" fill="#94a3b8" font-size="10">打分</text>
+  <rect x="500" y="753" width="14" height="14" rx="3" fill="rgba(136,19,55,0.6)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="520" y="764" fill="#94a3b8" font-size="10">掩码/softmax</text>
+</svg>

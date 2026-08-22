@@ -51,7 +51,7 @@ NN-slug/
 | 18 | [GPT 全景：读 model.py](18-model-py/README.md) | A | ✅ 已发布 |
 | 19 | [项目骨架：配置/数据/训练循环](19-train-loop/README.md) | B | ✅ 已发布 |
 | 20 | [手搓 BPE Tokenizer](20-bpe-tokenizer/README.md) | A | ✅ 已发布 |
-| 21 | 手搓 Self-Attention（QKV 落地） | S | 📝 计划中 |
+| 21 | [手搓 Self-Attention（QKV 落地）](21-self-attention/README.md) | S | ✅ 已发布 |
 | 22 | 手搓 Transformer Block + 位置编码 | A | 📝 计划中 |
 | 23 | 手搓 GPT 模型完整 forward | S | 📝 计划中 |
 | 24 | 训练循环：loss 收敛实战 | S | 📝 计划中 |
