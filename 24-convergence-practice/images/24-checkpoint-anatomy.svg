@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 860">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="40" y="42" fill="white" font-size="17" font-weight="700">第 24 课：checkpoint 时间胶囊——训练现场的一键快照</text>
+  <text x="40" y="64" fill="#94a3b8" font-size="10">断点续训的核心：把模型 + 优化器 + 步数 + 随机状态装进一个 .pt 文件，随时可以原样复活</text>
+
+  <!-- ========== 训练循环区域 ========== -->
+  <rect x="60" y="90" width="1160" height="152" rx="12" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="72" y="112" fill="#fbbf24" font-size="10" font-weight="600">训练循环（每步重复，核心 3 行）</text>
+
+  <!-- Box 1 -->
+  <rect x="150" y="135" width="200" height="70" rx="6" fill="#0f172a"/>
+  <rect x="150" y="135" width="200" height="70" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="250" y="161" fill="white" font-size="12" font-weight="600" text-anchor="middle">get_batch</text>
+  <text x="250" y="181" fill="#94a3b8" font-size="9" text-anchor="middle">随机抽 32 段文本</text>
+  <text x="250" y="196" fill="#64748b" font-size="8" text-anchor="middle">(B,T) 输入 + 目标</text>
+
+  <!-- Box 2 -->
+  <rect x="410" y="135" width="200" height="70" rx="6" fill="#0f172a"/>
+  <rect x="410" y="135" width="200" height="70" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="510" y="161" fill="white" font-size="12" font-weight="600" text-anchor="middle">forward + loss</text>
+  <text x="510" y="181" fill="#94a3b8" font-size="9" text-anchor="middle">① 前向：算交叉熵</text>
+  <text x="510" y="196" fill="#64748b" font-size="8" text-anchor="middle">loss 是"错得有多离谱"</text>
+
+  <!-- Box 3 -->
+  <rect x="670" y="135" width="200" height="70" rx="6" fill="#0f172a"/>
+  <rect x="670" y="135" width="200" height="70" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="770" y="161" fill="white" font-size="12" font-weight="600" text-anchor="middle">backward</text>
+  <text x="770" y="181" fill="#94a3b8" font-size="9" text-anchor="middle">② 反向：算梯度</text>
+  <text x="770" y="196" fill="#64748b" font-size="8" text-anchor="middle">每个参数该往哪调</text>
+
+  <!-- Box 4 -->
+  <rect x="930" y="135" width="200" height="70" rx="6" fill="#0f172a"/>
+  <rect x="930" y="135" width="200" height="70" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="1030" y="161" fill="white" font-size="12" font-weight="600" text-anchor="middle">optimizer.step()</text>
+  <text x="1030" y="181" fill="#94a3b8" font-size="9" text-anchor="middle">③ 更新：参数走一步</text>
+  <text x="1030" y="196" fill="#64748b" font-size="8" text-anchor="middle">AdamW：带动量地走</text>
+
+  <!-- arrows between boxes -->
+  <line x1="350" y1="170" x2="402" y2="170" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <line x1="610" y1="170" x2="662" y2="170" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <line x1="870" y1="170" x2="922" y2="170" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- loop arrow below boxes -->
+  <path d="M 1030 205 L 1030 226 L 250 226 L 250 212" fill="none" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="640" y="238" fill="#94a3b8" font-size="8" text-anchor="middle">循环到 max_steps 为止</text>
+
+  <!-- ========== 保存动作 ========== -->
+  <line x1="640" y1="242" x2="640" y2="272" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-amber)"/>
+  <text x="652" y="262" fill="#fbbf24" font-size="9" font-weight="600">每 200 步 torch.save()</text>
+
+  <!-- cylinder: ckpt file -->
+  <g transform="translate(540, 280)">
+    <rect x="0" y="14" width="200" height="76" rx="2" fill="#0f172a"/>
+    <ellipse cx="100" cy="14" rx="100" ry="16" fill="#0f172a"/>
+    <ellipse cx="100" cy="76" rx="100" ry="16" fill="#0f172a"/>
+    <rect x="0" y="14" width="200" height="62" fill="rgba(120,53,15,0.3)"/>
+    <ellipse cx="100" cy="14" rx="100" ry="16" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <ellipse cx="100" cy="76" rx="100" ry="16" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <line x1="0" y1="14" x2="0" y2="76" stroke="#fbbf24" stroke-width="1.5"/>
+    <line x1="200" y1="14" x2="200" y2="76" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="100" y="44" fill="white" font-size="11" font-weight="600" text-anchor="middle">ckpt-…-step400.pt</text>
+    <text x="100" y="62" fill="#94a3b8" font-size="9" text-anchor="middle">时间胶囊 · 12.73 MB</text>
+  </g>
+
+  <!-- ========== 解剖区域 ========== -->
+  <line x1="640" y1="372" x2="640" y2="402" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+  <rect x="60" y="410" width="1160" height="320" rx="12" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="72" y="432" fill="#a78bfa" font-size="10" font-weight="600">打开时间胶囊：里面装了 6 样东西（Mac mini 实测）</text>
+
+  <!-- Row 1 -->
+  <rect x="110" y="460" width="320" height="115" rx="6" fill="#0f172a"/>
+  <rect x="110" y="460" width="320" height="115" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="270" y="488" fill="white" font-size="12" font-weight="600" text-anchor="middle">model 权重</text>
+  <text x="270" y="508" fill="#94a3b8" font-size="9" text-anchor="middle">记忆本体 ≈1.6 MB</text>
+  <text x="270" y="524" fill="#64748b" font-size="8" text-anchor="middle">410,368 个可学习参数（fp32）</text>
+  <text x="270" y="540" fill="#64748b" font-size="8" text-anchor="middle">没有它，一切归零</text>
+
+  <rect x="480" y="460" width="320" height="115" rx="6" fill="#0f172a"/>
+  <rect x="480" y="460" width="320" height="115" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="640" y="488" fill="white" font-size="12" font-weight="600" text-anchor="middle">optimizer 状态</text>
+  <text x="640" y="508" fill="#94a3b8" font-size="9" text-anchor="middle">≈3.1 MB</text>
+  <text x="640" y="524" fill="#64748b" font-size="8" text-anchor="middle">AdamW 的动量 + 二阶矩</text>
+  <text x="640" y="540" fill="#64748b" font-size="8" text-anchor="middle">只存模型会"失忆"（后面验证）</text>
+
+  <rect x="850" y="460" width="320" height="115" rx="6" fill="#0f172a"/>
+  <rect x="850" y="460" width="320" height="115" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="1010" y="488" fill="white" font-size="12" font-weight="600" text-anchor="middle">step = 400</text>
+  <text x="1010" y="508" fill="#94a3b8" font-size="9" text-anchor="middle">训练到第几步</text>
+  <text x="1010" y="524" fill="#64748b" font-size="8" text-anchor="middle">续训从这儿接着走</text>
+  <text x="1010" y="540" fill="#64748b" font-size="8" text-anchor="middle">学习率曲线也对准这一步</text>
+
+  <!-- Row 2 -->
+  <rect x="110" y="600" width="320" height="115" rx="6" fill="#0f172a"/>
+  <rect x="110" y="600" width="320" height="115" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="270" y="628" fill="white" font-size="12" font-weight="600" text-anchor="middle">rng 随机状态</text>
+  <text x="270" y="648" fill="#94a3b8" font-size="9" text-anchor="middle">torch / numpy / python 三件套</text>
+  <text x="270" y="664" fill="#64748b" font-size="8" text-anchor="middle">还原后续训结果可复现</text>
+  <text x="270" y="680" fill="#64748b" font-size="8" text-anchor="middle">采样、dropout 都靠它</text>
+
+  <rect x="480" y="600" width="320" height="115" rx="6" fill="#0f172a"/>
+  <rect x="480" y="600" width="320" height="115" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="640" y="628" fill="white" font-size="12" font-weight="600" text-anchor="middle">best_val_loss = 2.03</text>
+  <text x="640" y="648" fill="#94a3b8" font-size="9" text-anchor="middle">历史最优验证 loss</text>
+  <text x="640" y="664" fill="#64748b" font-size="8" text-anchor="middle">训练没变好就退回它</text>
+  <text x="640" y="680" fill="#64748b" font-size="8" text-anchor="middle">早期停止的裁判</text>
+
+  <rect x="850" y="600" width="320" height="115" rx="6" fill="#0f172a"/>
+  <rect x="850" y="600" width="320" height="115" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="1010" y="628" fill="white" font-size="12" font-weight="600" text-anchor="middle">config + model_args</text>
+  <text x="1010" y="648" fill="#94a3b8" font-size="9" text-anchor="middle">模型配置 + 超参数</text>
+  <text x="1010" y="664" fill="#64748b" font-size="8" text-anchor="middle">重建现场的建筑图纸</text>
+  <text x="1010" y="680" fill="#64748b" font-size="8" text-anchor="middle">换台机器也能原样复活</text>
+
+  <!-- ========== 恢复动作 ========== -->
+  <line x1="640" y1="730" x2="640" y2="762" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <rect x="390" y="770" width="500" height="62" rx="8" fill="#0f172a"/>
+  <rect x="390" y="770" width="500" height="62" rx="8" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="640" y="798" fill="white" font-size="12" font-weight="600" text-anchor="middle">torch.load() 打开时间胶囊</text>
+  <text x="640" y="818" fill="#94a3b8" font-size="9" text-anchor="middle">模型 + 优化器 + 步数全部还原 → 从 step 400 无缝续训，loss 曲线不跳变</text>
+</svg>
