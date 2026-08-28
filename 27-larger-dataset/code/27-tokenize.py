@@ -42,9 +42,9 @@ def main():
     print(f"原文: {SAMPLE.strip()}")
     char_parts = [repr(c) for c in SAMPLE]
     print(f"字符: {char_parts[:49]}  ... 共 {len(SAMPLE)} 个 token")
-    bpe_ids = enc.encode(SAMPLE)
-    print(f"BPE : {[enc.decode_single_token_bytes(i).decode('utf-8', errors='replace') for i in bpe_ids]}")
-    print(f"      ... 共 {len(bpe_ids)} 个 token")
+    sample_ids = enc.encode(SAMPLE)   # 注意：样例重新编码，不要覆盖上面的全文本 bpe_ids
+    print(f"BPE : {[enc.decode_single_token_bytes(i).decode('utf-8', errors='replace') for i in sample_ids]}")
+    print(f"      ... 共 {len(sample_ids)} 个 token")
 
     stats = {
         "chars": len(text),
