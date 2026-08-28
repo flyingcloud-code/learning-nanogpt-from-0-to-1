@@ -1,0 +1,5 @@
+# 大文件不提交（用 code/27-download-corpus.py 重新生成语料，用 27-train.py 重新训练）
+novels.txt
+code/ckpt-*.pt
+code/run-*.log
+__pycache__/

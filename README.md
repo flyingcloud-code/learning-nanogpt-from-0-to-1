@@ -57,7 +57,7 @@ NN-slug/
 | 24 | [训练循环：loss 收敛实战](24-convergence-practice/README.md) | S | ✅ 已发布 |
 | 25 | [生成与评估](25-generation-eval/README.md) | B | ✅ 已发布 |
 | 26 | 里程碑①：训练莎士比亚模型 | S | 📝 计划中 |
-| 27 | 换大数据集 | B | 📝 计划中 |
+| 27 | [换大数据集](27-larger-dataset/README.md) | B | ✅ 已发布 |
 | 28 | 微调对话风格 | B | 📝 计划中 |
 | 29 | 视野：Scaling law → GPT-2/3 → RLHF | C | 📝 计划中 |
 | 30 | 结业：把模型做成可玩的东西 + 复盘 | B | 📝 计划中 |
