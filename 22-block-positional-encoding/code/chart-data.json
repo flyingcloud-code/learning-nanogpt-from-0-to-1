@@ -1,0 +1,88 @@
+{
+  "diff_layernorm": 4.76837158203125e-07,
+  "diff_block": 4.76837158203125e-07,
+  "loss_learned": [
+    {
+      "step": 1,
+      "loss": 4.3549
+    },
+    {
+      "step": 100,
+      "loss": 2.713
+    },
+    {
+      "step": 200,
+      "loss": 2.6733
+    },
+    {
+      "step": 300,
+      "loss": 2.4567
+    },
+    {
+      "step": 400,
+      "loss": 2.4546
+    },
+    {
+      "step": 500,
+      "loss": 2.3962
+    },
+    {
+      "step": 600,
+      "loss": 2.3505
+    }
+  ],
+  "loss_sin": [
+    {
+      "step": 1,
+      "loss": 4.3347
+    },
+    {
+      "step": 100,
+      "loss": 2.6333
+    },
+    {
+      "step": 200,
+      "loss": 2.5701
+    },
+    {
+      "step": 300,
+      "loss": 2.4505
+    },
+    {
+      "step": 400,
+      "loss": 2.2983
+    },
+    {
+      "step": 500,
+      "loss": 2.234
+    },
+    {
+      "step": 600,
+      "loss": 2.2166
+    }
+  ],
+  "extrapolate_learned": {
+    "16": 2.5729,
+    "32": 2.4419,
+    "48": 2.464,
+    "64": 2.244,
+    "80": null,
+    "96": null,
+    "128": null,
+    "192": null,
+    "256": null
+  },
+  "extrapolate_sin": {
+    "16": 2.321,
+    "32": 2.3586,
+    "48": 2.2242,
+    "64": 2.2188,
+    "80": 2.4052,
+    "96": 2.4217,
+    "128": 2.5857,
+    "192": 2.6746,
+    "256": 2.7885
+  },
+  "generated": "KING hys fril wif wou fres atheasin &\nF't fak?\nAne tharuread re tour owakeld my trs iiserthe t beblin our the t hes are'se peerile theathprert l ourussher thaveerin st\nI heren t s t norereno o his wild shesaie wn this thyof eve y\nThy shaverea funeeencoupan\nFind, buter,An bls tend IGh y winge by couthorer",
+  "steps": 600
+}
