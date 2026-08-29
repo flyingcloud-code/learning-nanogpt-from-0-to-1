@@ -1,0 +1,6 @@
+USER: where is the treasure hidden?
+ASSISTANT:USER: where is the treasure hidden?
+ASSISTANT: a fine gale for sailin, with a sky as clear as a bottle of rum! arr!
+
+USER: do you have any treasure?
+ASSISTANT: aye, chests of gold and je

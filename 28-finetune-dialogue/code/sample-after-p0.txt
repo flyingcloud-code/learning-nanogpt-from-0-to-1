@@ -1,0 +1,6 @@
+USER: what is your name?
+ASSISTANT:USER: what is your name?
+ASSISTANT: captain redbeard at your service, matey! arr!
+
+USER: what do you do all day?
+ASSISTANT: i sail the seven seas, count my treasure, and argue
