@@ -60,7 +60,7 @@ NN-slug/
 | 27 | [换大数据集](27-larger-dataset/README.md) | B | ✅ 已发布 |
 | 28 | [微调对话风格](28-finetune-dialogue/README.md) | B | ✅ 已发布 |
 | 29 | [视野：Scaling law → GPT-2/3 → RLHF](29-scaling-vision/README.md) | C | ✅ 已发布 |
-| 30 | 结业：把模型做成可玩的东西 + 复盘 | B | 📝 计划中 |
+| 30 | [结业：把模型做成可玩的东西 + 复盘](30-playground/README.md) | B | ✅ 已发布 |
 
 > 档位说明：S=解剖核心课（逐层拆解+多图+逐行代码）；A=概念+实验课；B=实操课（代码跑通优先）；C=轻量课（故事化，点到为止）
 
